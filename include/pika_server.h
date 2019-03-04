@@ -398,12 +398,6 @@ class PikaServer {
   int PubSubNumPat();
 
   /*
-   * Communication use
-   */
-  Status SendMetaSyncRequest();
-  Status SendPartitionTrySyncRequest(std::shared_ptr<Partition> partition);
-
-  /*
    * Monitor used
    */
   void AddMonitorClient(std::shared_ptr<PikaClientConn> client_ptr);
@@ -474,7 +468,11 @@ class PikaServer {
   bool GetBinlogAckInfo(const std::string& table, uint32_t partition, const std::string& ip, int port,
     uint32_t* ack_file_num, uint64_t* ack_offset, uint64_t* active_time);
 
+  /*
+   * Communication use
+   */
   Status SendMetaSyncRequest();
+  Status SendPartitionTrySyncRequest(std::shared_ptr<Partition> partition);
 
   Status SendBinlogSyncRequest(const std::string& table, uint32_t partition, const std::string& ip, int port);
 
